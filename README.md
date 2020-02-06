@@ -1,1 +1,3 @@
 # EWCIoT EDU01M 開發版 #
+
+![EDU01M開發版](img/EDU01M_01.JPG)
