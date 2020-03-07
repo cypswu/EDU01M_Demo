@@ -30,7 +30,7 @@ https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 [ESP 上傳工具](http://wiki.ai-thinker.com/tools)<br>
 
 - 整合測試
-如果想要直接使用，可以參考[**"Demo/整合測試"**](tree/master/Demo/整合測試)的使用說明。
+如果想要直接使用，可以參考[**"Demo/整合測試"**](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo/%E6%95%B4%E5%90%88%E6%B8%AC%E8%A9%A6)的使用說明。
 
 ----------
 
