@@ -29,6 +29,8 @@ https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 [WiFi 管理](https://github.com/tzapu/WiFiManager)<br>
 [ESP 上傳工具](http://wiki.ai-thinker.com/tools)<br>
 
+- 整合測試
+如果想要直接使用，可以參考[**"Demo/整合測試"**](tree/master/Demo/整合測試)的使用說明。
 
 ----------
 
