@@ -29,6 +29,13 @@ https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 [WiFi 管理](https://github.com/tzapu/WiFiManager)<br>
 [ESP 上傳工具](http://wiki.ai-thinker.com/tools)<br>
 
+- [Arduino語法參考：https://www.arduino.cc/reference/en/](https://www.arduino.cc/reference/en/ "Arduino語法參考")
+
+- [ESP8266參考手冊：https://arduino-esp8266.readthedocs.io/en/latest/](https://arduino-esp8266.readthedocs.io/en/latest/ "ESP8266參考手冊")
+
+- [EDU01M開發版參考：https://github.com/cypswu/EDU01M_Demo](https://github.com/cypswu/EDU01M_Demo "EDU01M開發版參考")
+
+
 - 整合測試
 如果想要直接使用，可以參考[**"Demo/整合測試"**](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo/%E6%95%B4%E5%90%88%E6%B8%AC%E8%A9%A6)的使用說明。
 
