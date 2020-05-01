@@ -36,7 +36,7 @@ const String LINE_TOKEN = "LINE_TOKEN";
 const int beepPin = 9;    //蜂鳴器輸出
 const int relayPin = 10;  //繼電器輸出PIN腳
 const int buttonPin = 12; //板載按鈕
-const int huirPin = 13;   //HUIR或MQx感測器
+const int huirPin = 13;   //HUIR感測器
 const int irRecPin = 14;  //紅外線接收
 const int irSndPin = 15;  //紅外線發射
 const int mqxPin = 16;    //MQx感測器
@@ -51,20 +51,18 @@ PubSubClient client(espClient);  //建立PubSubClient客戶端
 aREST rest = aREST(client);      //建立aREST客戶端
 
 //EDU01M系統配置
-const char CTRL_URL[]   = "cypswu.gitlab.io/ewc_iotctl/EWC_Demo01.html?TOPIC=";  // 遠端控制URL
-const char HTTP_URL[]   = "http://";
-const char HTTPS_URL[]  = "https://";
+const char CTRL_URL[]   = "https://cypswu.gitlab.io/ewc_iotctl/EWC_Demo01.html?TOPIC=";  // 遠端控制URL
 
 //全域變數宣告
 String device_name = String("EWC_") + String(ESP.getChipId(), HEX);  //裝置顯示名稱
 String mqtt = "test.mosquitto.org";  //預設的MQTT server
 String device_id;         //設定裝置ID(aRest名稱)
 String TOPIC = "";
-String event_pin = "9";   //事件驅動PIN
+String event_pin = "9";   //事件驅動PIN(感測器觸發蜂鳴器)
 float tem12;       //溫度
 float hum12;       //濕度
-int16_t adc2;      //類比輸入
-double fa2;        //電壓
+float fa1, fa2;    //電壓
+int16_t adc1, adc2;//類比輸入
 byte irnum = 1;    //預設紅外線學習序號
 
 void setup() {
@@ -73,7 +71,7 @@ void setup() {
   //PIN腳初始化
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(beepPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buttonPin, INPUT_PULLUP);  //開關使用內部上拉電阻
   pinMode(huirPin, INPUT);
   pinMode(relayPin, OUTPUT);
   pinMode(mqxPin, INPUT);
@@ -82,11 +80,10 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
-    if (digitalRead(buttonPin) == LOW) break;
     delay(500);
     Serial.print(".");
   }
-  Serial.println("\nWiFi connected");
+  Serial.print("\nWiFi connected ");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
   //初始化溫濕度與紅外線感測器
@@ -120,7 +117,7 @@ void loop() {
 }
 
 /********************************************************************************
-   檢查是否接收重新開機命令
+   檢查是否接收Serial重新開機命令
 */
 void checkReboot() {
   if (Serial.available()) {  //重新開機命令
@@ -138,9 +135,9 @@ void checkReboot() {
 */
 void setClock() {
   if (WiFi.status() != WL_CONNECTED) return ;
-  int timezone = 8;
-  int dst = 0;  //daylightOffset
-  configTime(timezone * 3600, dst * 0, "time.stdtime.gov.tw");  // UTC
+  int timezone = 8;  //定義時區(+8)
+  int dst = 0;       //定義日光節約時間
+  configTime(timezone * 3600, dst, "time.stdtime.gov.tw");  // UTC
 
   Serial.print(F("Waiting for NTP time sync: "));
   time_t now = time(nullptr);
@@ -170,12 +167,12 @@ void tickLed() {
    更新感測器數據
 */
 void reSensor() {
-  static unsigned long pret = millis() - 60000UL;  //執行後起算
-  if (! isTimeStamp(pret, 60000)) return; //間隔定時執行
+  static unsigned long pret = millis() - 1000UL;  //執行後起算
+  if (! isTimeStamp(pret, 1000)) return; //間隔定時執行
   reDHT12();
-  reAdc1115();
+  reAds1115();
   if (checkDHT12()) {
-    notifActionList("溫度爆表盡快檢查");
+    notifActionList("溫度異常盡快檢查");
   }
   String msg = String("DHT12 Temp\n") + tem12 + " C\nLIB " + fa2 + " V";
   showSSD1306(msg);
@@ -244,7 +241,6 @@ int restControl(String cmd) {
   } else {
     msg = "命令錯誤";
   }
-  Serial.println(msg);
   notifActionList(msg);
   return 7;  //aRest回應狀態(自定義)
 }
@@ -266,8 +262,9 @@ void notifActionList(String txt) {
   msg = txt + "\n目前溫度 " + tem12 + " ℃  濕度 " + hum12 + " %";
   msg = msg + "\n鋰電電壓 " + fa2 + "V";
   msg = msg + "\n<<遠程控制列表-" + device_name + ">>\n" +
-        "遠端控制： " + FPSTR(HTTPS_URL) + FPSTR(CTRL_URL) + TOPIC + "\n";
+        "遠端控制： " + FPSTR(CTRL_URL) + TOPIC + "\n";
   if (LINE_TOKEN.length() != 0) {
+    Serial.println(txt);
     LINE.notify(msg);
     delay(100);
   }
@@ -308,7 +305,6 @@ void momitorStatus() {
       msg = "Relay 已關閉";
     }
     notifActionList(msg);
-    Serial.println(msg);
   }
   //人體偵測通知
   if (ppir != cpir) {
@@ -318,7 +314,6 @@ void momitorStatus() {
       showSSD1306("PIR alram !");
       msg = "PIR 人體移動感測警訊";
       notifActionList(msg);
-      Serial.println(msg);
     } else {
       showSSD1306();
     }
@@ -331,7 +326,6 @@ void momitorStatus() {
       showSSD1306("MQ2 alram !");
       msg = "MQ2 氣體煙霧感測警訊";
       notifActionList(msg);
-      Serial.println(msg);
     } else {
       showSSD1306();
     }
@@ -343,7 +337,7 @@ void momitorStatus() {
     notifActionList(msg);
   }
   //開關狀態是否短按或長按
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; true; i++) {
     bool bin = digitalRead(buttonPin);
     if (bin == LOW) {
       if (i == 99) {
@@ -434,10 +428,10 @@ bool checkDHT12() {
    偵測電池是否還有電(小於3.5)
 */
 bool checkBattery() {
-  static double fax = 0;
+  static float fax = 0;
   bool alarm = false;
-  const double diff = 0.02;
-  double x;
+  const float diff = 0.02;
+  float x;
   if (fax > fa2)
     x = fax - fa2;
   else
@@ -470,9 +464,12 @@ void reDHT12() {
 }
 
 /********************************************************************************
-  更新 ADC1115 16bit電壓測量數據
+  更新 ADS1115 16bit電壓測量數據
 */
-void reAdc1115() {
+void reAds1115() {
+  adc1 = ads.readADC_SingleEnded(1);
+  fa1 = adc1 * 0.1875 / 1000 / 1.034 * 20;
+  Serial.print("AIN1: "); Serial.print(adc1); Serial.print("\t\t"); Serial.print(fa1); Serial.println("V");
   adc2 = ads.readADC_SingleEnded(2);
   fa2 = adc2 * 0.1875 / 1000;
   Serial.print("AIN2: "); Serial.print(adc2); Serial.print("\t\t"); Serial.print(fa2); Serial.println("V");
