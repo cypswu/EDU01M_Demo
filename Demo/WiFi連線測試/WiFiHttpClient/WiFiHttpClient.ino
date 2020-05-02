@@ -1,5 +1,6 @@
 /*
     HTTP連線測試
+	使用HTTP連線到www.google.com網頁，並且以Serial輸出網頁內容。
 */
 
 #include <ESP8266WiFi.h>

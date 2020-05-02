@@ -2,11 +2,11 @@
 
 ----------
 
-## 什麼是EDU01M開發版 ##
-EDU01M開發版是一塊可以使用ARDUINO IDE開發工具，進行物聯網二次開發的一塊學習板，板上內建了的功能包含蜂鳴器模組、繼電器開關、按鈕開關、紅外線接收模組、紅外線發射模組、DHT12溫濕度感測；在開發板的接口有預留OLED顯示屏幕、人體紅外線感應模組、MQ2等相關氣體感測模組、兩組比較器輸入接口、ADS1115的16bit類比輸入感測模組；在電源的輸入方面，除了燒錄的USB電源接口，還可以使用24V以下變壓器輸入、太陽能電池輸入、單顆18650電池輸入等等，此開發板使用ESP8285 MCU，開發上相容ESP8266，可做WiFi等物聯網程式開發應用。
+## 什麼是 EDU01M 開發版 ##
+EDU01M 開發版是一塊可以使用 ARDUINO IDE 開發工具，進行物聯網二次開發的一塊學習板，板上內建了的功能包含蜂鳴器模組、繼電器開關、按鈕開關、紅外線接收模組、紅外線發射模組、 DHT12 溫濕度感測；在開發板的接口有預留 OLED 顯示屏幕、人體紅外線感應模組、MQ2 等相關氣體感測模組、兩組比較器輸入接口、ADS1115 的 16bit 類比輸入感測模組；在電源的輸入方面，除了燒錄的USB電源接口，還可以使用 24V 以下變壓器輸入、太陽能電池輸入、單顆 18650 電池輸入等等，此開發板使用 ESP8285 MCU，板子上包含了安信可原廠 ESP-01M WIFI 模組，在開發上完全相容 ESP8266 ，可做 WiFi 等物聯網程式開發應用。
 
-## EDU01M如何開發 ##
-開發過程首先需要在電腦下載並安裝ARDUINO IDE開發工具，然後下載ESP8266開發庫，再連接Micro USB線到電腦，確認電腦系統正確驅動USB，取得正確COM Port號碼，接著就可以進行開發作業，在開發完成要上傳到開發板時，須將P0連接GND並按放重啟鈕，進入燒錄模式，燒錄完成後，會自動進入執行模式，開發需要用到的模組程式庫，已經收錄在libraries目錄中，以下列就依序列出開發過程，可能需要的相關連結，希望對您的物聯網開發有些許的幫助。
+## EDU01M 如何開發 ##
+開發過程首先需要在電腦下載並安裝 ARDUINO IDE 開發工具，然後下載ESP8266開發庫，再連接 Micro USB 線到電腦，確認電腦系統正確驅動 USB ，取得正確 COM Port 號碼，接著就可以進行開發作業，在開發完成要上傳到開發板時，須將 P0 連接 GND 並按放重啟鈕，進入燒錄模式，燒錄完成後，會自動進入執行模式，開發需要用到的模組程式庫，已經收錄在 libraries 目錄中，以下列就依序列出開發過程，可能需要的相關連結，希望對您的物聯網開發有些許的幫助。
 
 - ARDUINO IDE開發工具<br>
 [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software "https://www.arduino.cc/en/Main/Software")
@@ -15,7 +15,7 @@ EDU01M開發版是一塊可以使用ARDUINO IDE開發工具，進行物聯網二
 https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 設置可以參考 [ESP8266 for Arduino IDE](https://github.com/esp8266/Arduino) 官網
 
-- CH340 USB轉TTL驅動<br>
+- [CH340 USB轉TTL驅動](https://github.com/cypswu/EDU01M_Demo/raw/master/devices/CH341SER.zip)<br>
 
 - 開發板相關模組程式庫<br>
 [ADS1115 類比輸入](https://github.com/adafruit/Adafruit_ADS1X15)<br>
@@ -65,9 +65,11 @@ ESP01M 預設開發使用的程式庫由 [`EWC_EDU01M_libraries.zip`](https://gi
 
 
 
-5. 當程式庫都安裝完成後，還需要確認開發版已取得正確的驅動程式，如果電腦從未安裝 CH340 驅動程式，請先安裝。
+5. 當程式庫都安裝完成後，還需要確認開發版已取得正確的驅動程式，如果電腦從未安裝 [CH340 驅動程式](https://github.com/cypswu/EDU01M_Demo/raw/master/devices/CH341SER.zip)，請先安裝。
 
 
 
-6. 上傳燒錄需要選擇正確的燒錄配置如下圖，燒錄上傳前，P0要記得接地(GND)，然後按下REST黑色按鈕重啟，開發版會進入燒錄模式，上傳完成後就可以把P0與GND斷開。<br>
+6. 上傳燒錄需要選擇正確的燒錄配置如下圖，燒錄上傳前， P0 要記得接地(GND)，然後按下 REST 黑色按鈕重啟，開發版會進入燒錄模式，上傳完成後就可以把 P0 與 GND 斷開。<br>
 ![alt text](img/Tools_options.png "EDU01M 開發版設定")
+
+<br>完成以上的配置，就可以開始愉快的開發物聯網相關的應用了， [Demo](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo) 目錄中，我已附上一些相關的應用範例，希望對您能有所幫助。

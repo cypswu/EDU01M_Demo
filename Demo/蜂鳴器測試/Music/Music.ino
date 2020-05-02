@@ -1,10 +1,10 @@
 /*
   音階測試
-  預設的蜂鳴器正極接在D9腳位
+  預設的蜂鳴器正極接在P9腳位
 */
 #include "pitches.h"
 
-const byte notePin = 9;
+const byte notePin = 9;  //蜂鳴器PIN腳
 
 int melody[] = {C4, D4, E4, F4, G4, A5, B5, C5};
 

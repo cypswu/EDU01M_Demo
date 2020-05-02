@@ -1,12 +1,13 @@
 /*
    LINE通知測試
+   此程式需要填入正確的SSID與PASSWORD，並取得LINE_TOKEN進行通知。
 */
 
 #include <TridentTD_LineNotify.h>  // https://github.com/TridentTD/TridentTD_LineNotify
 
-#define SSID        "ssid"
-#define PASSWORD    "password"
-#define LINE_TOKEN  ""
+#define SSID        "SSID"
+#define PASSWORD    "PASSWORD"
+#define LINE_TOKEN  "LINE_TOKEN"
 
 void setup() {
   Serial.begin(115200);
