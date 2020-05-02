@@ -40,9 +40,34 @@ https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 如果想要直接使用，可以參考[**"Demo/整合測試"**](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo/%E6%95%B4%E5%90%88%E6%B8%AC%E8%A9%A6)的使用說明。
 
 ----------
+## EDU01M 開發版第一次使用的系統配置 ##
 
-EDU01M開發板
+
+1. EDU01M 開發板實機
 ![alt text](img/EDU01M_01.JPG "EDU01M 開發版")
+<br>欣賞完 EDU01M 開發版後，可以開始動手安裝 Arduino IDE ，並設置開發環境。
 
-安裝 Arduino IDE，燒錄時P0接地，選擇燒錄配置如下。<br>
-![alt text](img/Tools_options.png "EDU01M 開發版")
+
+2. 安裝 Arduino IDE 後，在選單的 **檔案 / 偏好設定** ，設置 ESP8266 的開發版程式庫來源。<br>
+ESP01M 預設開發使用的程式庫由 [`EWC_EDU01M_libraries.zip`](https://github.com/cypswu/EDU01M_Demo/raw/master/libraries/EWC_EDU01M_libraries.zip "EWC_EDU01M_libraries.zip") 下載，然後解壓縮到 **Documents\Arduino** 目錄，再指定到**草稿碼簿的位置**。<br>
+開發版來源 `https://arduino.esp8266.com/stable/package_esp8266com_index.json` <br>
+![alt text](img/arduinoSetup.jpg "開發版程式庫來源設置")
+
+
+
+3. 設置 ESP8266 的程式庫來源後，在選單的 **工具 / 開發版 / 開發版管理員** <br>
+![alt text](img/mainupdate.png "Arduino IDE 偏好設定")
+
+
+
+4. 搜尋並安裝 ESP8266 開發版程式庫，展示使用2.6.3版，使用者也可安裝最新版本，或許會有意外的開發功能，詳細差異可以查詢 [ESP8266參考手冊](https://arduino-esp8266.readthedocs.io/en/latest/) 。<br>
+![alt text](img/esp2866install.png "ESP8266開發版安裝")
+
+
+
+5. 當程式庫都安裝完成後，還需要確認開發版已取得正確的驅動程式，如果電腦從未安裝 CH340 驅動程式，請先安裝。
+
+
+
+6. 上傳燒錄需要選擇正確的燒錄配置如下圖，燒錄上傳前，P0要記得接地(GND)，然後按下REST黑色按鈕重啟，開發版會進入燒錄模式，上傳完成後就可以把P0與GND斷開。<br>
+![alt text](img/Tools_options.png "EDU01M 開發版設定")
