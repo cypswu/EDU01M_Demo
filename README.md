@@ -72,4 +72,4 @@ ESP01M 預設開發使用的程式庫由 [`EWC_EDU01M_libraries.zip`](https://gi
 6. 上傳燒錄需要選擇正確的燒錄配置如下圖，燒錄上傳前， P0 要記得接地(GND)，然後按下 REST 黑色按鈕重啟，開發版會進入燒錄模式，上傳完成後就可以把 P0 與 GND 斷開。<br>
 ![alt text](img/Tools_options.png "EDU01M 開發版設定")
 
-<br>完成以上的配置，就可以開始愉快的開發物聯網相關的應用了， [Demo](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo) 目錄中，我已附上一些相關的應用範例，希望對您能有所幫助。
+<br>完成以上的配置，就可以開始愉快的開發物聯網相關的應用了， [Demo](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo) 目錄中，已經附上一些相關的應用範例，希望對您能有所幫助。
