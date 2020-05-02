@@ -16,6 +16,7 @@ https://arduino.esp8266.com/stable/package_esp8266com_index.json <br>
 設置可以參考 [ESP8266 for Arduino IDE](https://github.com/esp8266/Arduino) 官網
 
 - [CH340 USB轉TTL驅動](https://github.com/cypswu/EDU01M_Demo/raw/master/devices/CH341SER.zip)<br>
+USB轉串口驅動官網：[http://www.wch.cn/download/CH341SER_ZIP.html](http://www.wch.cn/download/CH341SER_ZIP.html)
 
 - 開發板相關模組程式庫<br>
 [ADS1115 類比輸入](https://github.com/adafruit/Adafruit_ADS1X15)<br>
@@ -60,16 +61,16 @@ ESP01M 預設開發使用的程式庫由 [`EWC_EDU01M_libraries.zip`](https://gi
 
 
 
-4. 搜尋並安裝 ESP8266 開發版程式庫，展示使用2.6.3版，使用者也可安裝最新版本，或許會有意外的開發功能，詳細差異可以查詢 [ESP8266參考手冊](https://arduino-esp8266.readthedocs.io/en/latest/) 。<br>
-![alt text](img/esp2866install.png "ESP8266開發版安裝")
+4. 搜尋並安裝 ESP8266 開發版程式庫，範例展示使用2.6.3版，使用者也可安裝最新版本，或許會有意外的開發功能，詳細說明可以查詢 [ESP8266 版本差異](https://github.com/esp8266/Arduino/releases) 。<br>
+![alt text](img/esp2866install.png "ESP8266 開發版安裝")
 
 
 
-5. 當程式庫都安裝完成後，還需要確認開發版已取得正確的驅動程式，如果電腦從未安裝 [CH340 驅動程式](https://github.com/cypswu/EDU01M_Demo/raw/master/devices/CH341SER.zip)，請先安裝。
+5. 當程式庫都安裝完成後，還需要確認開發版已取得正確的驅動程式，如果電腦從未安裝 [CH340 驅動程式](https://github.com/cypswu/EDU01M_Demo/raw/master/devices/CH341SER.zip)，請先下載安裝並確定通訊的 COM Port (串口埠號)。
 
 
 
 6. 上傳燒錄需要選擇正確的燒錄配置如下圖，燒錄上傳前， P0 要記得接地(GND)，然後按下 REST 黑色按鈕重啟，開發版會進入燒錄模式，上傳完成後就可以把 P0 與 GND 斷開。<br>
 ![alt text](img/Tools_options.png "EDU01M 開發版設定")
 
-<br>完成以上的配置，就可以開始愉快的開發物聯網相關的應用了， [Demo](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo) 目錄中，已經附上一些相關的應用範例，希望對您能有所幫助。
+<br>恭喜完成以上的配置，可以開始愉快的開發 EDU01M 物聯網相關應用了，在 [Demo](https://github.com/cypswu/EDU01M_Demo/tree/master/Demo) 資料夾中，已經附上一些相關的應用範例，希望對您能有所幫助。
