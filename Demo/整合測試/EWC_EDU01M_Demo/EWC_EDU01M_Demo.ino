@@ -30,7 +30,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 //無線AP帳號與LINE設置
 const char* ssid     = "SSID";
 const char* password = "PASSWORD";
-const String LINE_TOKEN = "LINE_TOKEN";
+const String LINE_TOKEN = "LINE_TOKEN";  //如果沒有申請LINE_TOKEN字串，可以設定為""空字串
 
 //PIN腳設置
 const int beepPin = 9;    //蜂鳴器輸出
@@ -249,6 +249,7 @@ int restControl(String cmd) {
    設備通知初始化LINE
 */
 void initLineNotif() {
+  Serial.println(String(CTRL_URL) + TOPIC);
   if (LINE_TOKEN.length() == 0) return;
   LINE.setToken(LINE_TOKEN);
   LINE.notifySticker("設備啟動完成： https://www.ewciot.com", 2, 512);
@@ -263,8 +264,8 @@ void notifActionList(String txt) {
   msg = msg + "\n鋰電電壓 " + fa2 + "V";
   msg = msg + "\n<<遠程控制列表-" + device_name + ">>\n" +
         "遠端控制： " + FPSTR(CTRL_URL) + TOPIC + "\n";
+  Serial.println(txt);
   if (LINE_TOKEN.length() != 0) {
-    Serial.println(txt);
     LINE.notify(msg);
     delay(100);
   }
