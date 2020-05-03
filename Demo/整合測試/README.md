@@ -76,7 +76,7 @@
 6. 當LINE TOKEN等設置完成，並將LINE Notify加入通知對象後，重啟設備就可以收到LINE的通知，由通知上的超連結，就可以取得系統狀態與感測器控制。<br>
 ![alt text](../../img/control.png "設備感測器控制介面")
 
-7. 當開啟遠端命令**(Remote command)**時，可以使用以下幾個遠端控制命令，預設是停用狀態。<br>
+7. 當開啟遠端命令 **(Remote command)** 時，可以使用以下幾個遠端控制命令，預設是停用狀態。<br>
 **韌體更新：**/cmd?params=EWC@update<br>
 **重啟裝置：**/cmd?params=EWC@reboot<br>
 **更改MQTT：**/cmd?params=EWC@AtoC<br>
