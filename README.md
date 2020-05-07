@@ -24,7 +24,8 @@ USB轉串口驅動官網：[http://www.wch.cn/download/CH341SER_ZIP.html](http:/
 [Arduino JSON 操作](https://github.com/bblanchon/ArduinoJson)<br>
 [aRest 框架](https://github.com/marcoschwartz/aREST)<br>
 [DHT12 溫濕度感測](https://github.com/xreef/DHT12_sensor_library)<br>
-[紅外線輸入與輸出](https://github.com/cypswu/EWC_IR)<br>
+[ESP 紅外線收發](https://github.com/crankyoldgit/IRremoteESP8266)<br>
+[紅外線錄製學習](https://github.com/cypswu/EWC_IR)<br>
 [MQTT 通訊](https://pubsubclient.knolleary.net/)<br>
 [LINE 通知](https://github.com/TridentTD/TridentTD_LineNotify)<br>
 [WiFi 管理](https://github.com/tzapu/WiFiManager)<br>
