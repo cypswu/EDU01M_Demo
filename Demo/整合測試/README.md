@@ -62,10 +62,10 @@
 1. 首先用網頁登入 [LINE Notify](https://notify-bot.line.me/) 官網首頁`https://notify-bot.line.me/`，如果不知道怎麼登入，請先在 LINE 中設置郵件地址與登入密碼，然後以郵件地址與密碼登入。
 
 2. 點選網頁右上角的**個人頁面**，如果沒有下拉選單，請將手機網頁切換到PC模式。<br>
-![alt text](../../img/01LINE_Notify_logon.png "LINE Notify 個人頁面")
+![alt text](../../img/LINE_Notify_logon.png "LINE Notify 個人頁面")
 
 3. 點選發行權杖，然後選擇您要通知的對象，建議先在LINE中建立一個通知群組，然後選擇這個群組作為通知對象。<br>
-![alt text](../../img/02get_line_token.png "發行權杖取得 LINE TOKEN")
+![alt text](../../img/line_token_issued.png "發行權杖取得 LINE TOKEN")
 
 4. 選擇通知對象後，會產生一組長長的字串，這組字串就是 **LINE TOKEN**，請保存好這個字串並且不要將字串外流，當網頁退出後，此字串就會消失，並且在LINE中會自動產生**LINE Notify**的通知物件，後續將此物件加入通知對象就完成LINE上的設置。<br>
 ![alt text](../../img/LineNotify.png "發行權杖通知物件")
